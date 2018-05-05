@@ -6,9 +6,8 @@ python:
 notifications:
   email: never
 
-env:
-  global:
-  - secure: ZuYkb2F67f9OwE4BGhEpdnPQn3MS+MO4553Lq4l53A2dxc1HMkjB+vkgmfFahewlxGaaIpzcR+ctdBSP+BGuaB1tzVWHZ/z9NN4rQu7+jRbb0z7TYS8XFZULTT6g60a+PWZjUg198bvTTZ1/4EogHn+8kILiM8yBX4u0YM+XEhyMSU5hPsztriJfEXCoCVIxmDh2/4uvfa+cVNI5K0EOZGY7QlBaOUB7P4Jx1SwScd9W9Os9DZhULylMwx6M1TMsGl8ubBpAvjqUu/IdMjdfmbnX6bnNu/trRMLhelDB0mWM2hPEVzWH1/ofaXLcpdVmVZtlHzczcQvfI9hzoMudyZtC8Ji6WW3n9iaoUpPIXAiqS1JgoeuTJLTk8PITUdIE03CsxfPwO5cO0ibdiQRRDt7V5ml1VDZtMRxK5mHiHYp7yKMkG/Ga43VHA2fnCjZa0Vh73htb+3aPCU7TMulB6dun2DqcjTP8zENP1VN27AaAOGRasRPKKsxqCf+JD3l/mbZzjimoDfPbf9uFdhcxdxbOeT/fGpFZEXGYoBCHUqZSz2TsIfU6rnNA9sIuJYrtM6n4/cuxkR76bibGDAm4BGGNkiD/Cgz0xn5KjWSfE6nCVN4vux8wK7JkuTJSJioGV5PvGNXHl1VutOsoKBi/2Ca6k/MMVI+x8gWKdIEOqkk=
+before_install:
+  - openssl aes-256-cbc -K $encrypted_a0055995c7d5_key -iv $encrypted_a0055995c7d5_iv -in .env.enc -out .env -d
 
 install:
   - pip install -r requirements-dev.txt

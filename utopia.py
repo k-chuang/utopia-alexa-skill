@@ -10,7 +10,19 @@ Date: March 8, 2018
 
 import os
 from flask import Flask, json, render_template, jsonify
-from flask_ask import Ask, request, session, question, context, statement, delegate, convert_errors, elicit_slot
+from flask_ask import (
+    Ask,
+    request,
+    session,
+    question,
+    context,
+    statement,
+    delegate,
+    convert_errors,
+    elicit_slot,
+    audio,
+    current_stream
+)
 import requests
 import json
 import logging
@@ -23,11 +35,12 @@ import random
 from random import randint
 from bs4 import BeautifulSoup, Tag, NavigableString
 from datetime import datetime
+from dotenv import load_dotenv
 
 ##################################
 # App & Environment Initialization
 ##################################
-
+load_dotenv()
 app = Flask(__name__)
 ask = Ask(app, "/")
 logger = logging.getLogger('flask_ask').setLevel(logging.DEBUG)
@@ -36,7 +49,6 @@ logger = logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 ##############################
 # On Launch
 ##############################
-# When app is first launched, user will wind up here with this @ask.launch decorator
 @ask.launch
 def start_skill():
     session.attributes["STATE"] = 'Start'
@@ -48,8 +60,7 @@ def start_skill():
 ##########################
 # Custom Intents
 ##########################
-@ask.intent("NameIntent",
-            mapping= {'firstname': 'FirstName'})
+@ask.intent("NameIntent", mapping= {'firstname': 'FirstName'})
 def get_name(firstname):
     name_message = render_template("official_welcome", firstname=firstname)
     name_message_reprompt = render_template("official_welcome_reprompt")
@@ -221,6 +232,22 @@ def give_quote(category):
                                              large_image_url=rand_quote_picture)
 
 
+@ask.intent('PoemIntent')
+def give_poem():
+    session.attributes['STATE'] = 'Poem'
+    # all_poems = os.environ["POEMS"]
+    all_poems = os.getenv('POEMS')
+    poems_json = json.loads(all_poems)
+    the_poem_name = random.choice(list(poems_json['Poems'].keys()))
+    the_poem = poems_json['Poems'][the_poem_name]
+    poem_author = the_poem['author']
+    # speech = 'Here is a poem for you... ' + str(the_poem_name) + ', by ' + str(poem_author)
+    speech = render_template('poem', the_poem_name=the_poem_name, poem_author=poem_author)
+    stream_url = the_poem['audio_link']
+    return audio(speech).play(stream_url).simple_card(title=the_poem_name + ' by ' + poem_author,
+                                                      content='Poetry Link: ' + the_poem['text_link'])
+
+
 @ask.intent('SuicideHotLine')
 def provide_hot_line():
     session.attributes["STATE"] = 'SuicideHotLine'
@@ -239,15 +266,16 @@ def recommend_therapist(address):
     :return:
     '''
     session.attributes["STATE"] = 'RecommendTherapist'
-    # query = "therapist psychiatrist psychologist"
-    query = "therapist"
+    query = "therapist psychiatrist psychologist"
+
     try:
         address = get_location()
     # address is not successfully found, raise ValueError and catch it here
     except ValueError as er:
         return statement(str(er)).consent_card("read::alexa:device:all:address")
 
-    api_key = os.environ['GOOGLE_API_KEY']
+    # api_key = os.environ['GOOGLE_API_KEY']
+    api_key = os.getenv('GOOGLE_API_KEY')
     kwargs_geocode = {'key': api_key}
     g = geocoder.google(address, **kwargs_geocode)
     coordinates = g.latlng
@@ -337,9 +365,18 @@ def give_advice():
     advice_message_ssml = '<speak> ' + advice_message + ' </speak>'
     return question(advice_message_ssml)
 
+
 ##############################
 # Overriding Required Intents
 ##############################
+@ask.intent('AMAZON.PauseIntent')
+def pause():
+    return audio('Pausing..').stop()
+
+
+@ask.intent('AMAZON.ResumeIntent')
+def resume():
+    return audio('Resuming..').resume()
 
 
 @ask.intent('AMAZON.HelpIntent')
@@ -348,6 +385,7 @@ def help():
     return question(help_text)
 
 
+@ask.intent('AMAZON.CancelIntent')
 @ask.intent('AMAZON.StopIntent')
 def stop():
     try:
@@ -355,7 +393,8 @@ def stop():
     except KeyError:
         firstname = 'my friend'
     bye_message = render_template("bye", firstname=firstname)
-    return statement(bye_message)
+    return audio(bye_message).clear_queue(stop=True)
+    #return statement(bye_message)
 
 
 @ask.session_ended

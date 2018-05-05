@@ -6,19 +6,11 @@ initial_welcome: |
 initial_welcome_reprompt: Sorry, I did not quite get that, what's your name?
 
 official_welcome: |
-  Hi, {{firstname}}! Would you like to take the Hamilton Depression Rating survey,
+  Hi {{firstname}}! Would you like to take the Hamilton Depression Rating survey,
   or do you want a full list of the features? Say survey or help to continue.
 
 official_welcome_reprompt: |
-  Hello again, I did not catch that. Please say survey or someone to talk to.
-  For more commands, please say help.
-
-start_survey: |
-  Hi, {{firstname}}. Welcome to the Hamilton Depression Rating Survey.
-  I am Alexa, and I will asking you questions.
-  Try your best to answer each question honestly and completely to your best knowledge.
-  This survey will help me better understand what you are going through.
-  Are you ready to start the survey?
+  Hello again, I did not catch that. Please say survey or help to continue.
 
 suicide: |
   Thank you for being honest with me. Please don't hurt yourself or anyone else. Be strong, and remember that there are people that love and care about you.
@@ -30,7 +22,7 @@ therapist: |
   I have added their contact information and available hours during the week to the Alexa app.
 
 advice_message: |
-  Here is a natural way to improve your mood. <break time="1s"/>
+  Here is a natural way to improve your mood... <break time="1s"/>
 
 advice_list:
   - Listen to music that makes you feel good.
@@ -61,12 +53,17 @@ advice_list:
   - Re-arrange the furniture in a room in your house. The change of scenery should help.
   - Set goals, such as make a to-do list for this week. Setting goals is important to fight depression. Start small. Make your goal something that you can succeed at, like doing the dishes every other day. As you start to feel better, you can add more challenging daily goals.
 
-
+poem: |
+  <speak>
+  Welcome to the Poem feature! If you want to pause the poem, say pause or stop. If you want to exit the skill, say cancel.
+  Otherwise, here is a poem for you. <break time="0.5s"/> {{the_poem_name}} , written by {{poem_author}}
+  <break time="1s"/>
+  </speak>
 
 help: |
   For an evaluation, say survey. To listen to a uplifting quote, say quotes. For a list of natural remedies for depression, please say remedy.
-  For cognitive behavioral therapy information, treatment and practices, say C.B.T. For mindfulness meditation, say meditation.
-  For nearby therapist recommendations, say therapist.
+  For mindfulness meditation, say meditation. For nearby therapist recommendations, say therapist.
+  For contact information of the National Suicide Prevention Lifeline, please say lifeline.
 
 
 quote: |
@@ -80,7 +77,7 @@ quote: |
 
 BonusOneWait: |
   <speak>
-  Okay. I will repeat this question and give you time to think.
+  Okay. I will repeat the question and give you time to think.
   Think about the first three words that come to your mind.
   <break time="7s"/>
   Are you ready to move on?
@@ -89,8 +86,8 @@ BonusOneWait: |
 
 BonusTwoWait: |
   <speak>
-  Okay. I will repeat this question and give you time to think.
-  Think about three adjectives that describe your past week. Again, you have time to think about it, before answering.
+  Okay. I will repeat the question and give you time to think.
+  Think about three adjectives that describe your past week. Again, you will have time to think about it, before answering.
   <break time="7s"/>a
   Are you ready to move on?
   </speak>
@@ -136,6 +133,4 @@ reprompt_survey: |
   I'm sorry, but I did not quite understand the answer you gave. Please say a number in the specified range.
 
 bye: Farewell {{firstname}}! Thank you for using Utopia, and I wish you an awesome rest of your day.
-
-#Remember, some days you'll have setbacks, but just know that tomorrow is a new day with new possibilities.
 

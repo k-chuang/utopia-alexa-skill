@@ -94,6 +94,19 @@ class TestUtopiaApp(unittest.TestCase):
         self.assertIsNotNone(quotes)
         self.assertNotEqual(len(quotes), 0)
 
+    def test_give_poem_intent(self):
+        """Test PoemIntent"""
+        response = self.app.post('/', data=json.dumps(request_json.give_poem_body))
+        self.assertEqual(200, response.status_code)
+        data = json.loads(response.data.decode('utf-8'))
+        response = data['response']
+        self.assertTrue('directives' in response)
+        self.assertIsNotNone(response['directives'][0]['audioItem']['stream']['token'])
+        self.assertEqual('AudioPlayer.Play', response['directives'][0]['type'])
+        self.assertEqual(0, response['directives'][0]['audioItem']['stream']['offsetInMilliseconds'])
+        self.assertTrue('Welcome to the Poem feature!' in response['outputSpeech']['ssml'])
+        self.assertTrue(all(card_attribute in response['card'] for card_attribute in ['content', 'title', 'type']))
+
     def test_suicide_hotline_intent(self):
         """Test SuicideHotLine Intent."""
         response = self.app.post('/', data=json.dumps(request_json.suicide_hotline_body))
@@ -120,7 +133,7 @@ class TestUtopiaApp(unittest.TestCase):
         self.assertTrue('I\'ve found a therapist near you.' in data['response']['outputSpeech']['text'])
         self.assertEqual('RecommendTherapist', data['sessionAttributes']['STATE'])
 
-    @patch('utopia.get_location', return_value='1972 Hobson Ave, Greenfield, CA 93927')
+    @patch('utopia.get_location', return_value='158 Bradford St, Sonora, CA 95370')
     def test_recommend_therapist_intent_address_mocked_closed_places(self, mock_get_location):
         response = self.app.post('/', data=json.dumps(request_json.recommend_therapist_body))
         self.assertEqual(200, response.status_code)

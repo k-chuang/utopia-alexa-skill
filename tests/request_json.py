@@ -235,6 +235,51 @@ give_quote_body = {
     "version": "1.0"
 }
 
+give_poem_body ={
+  "version": "1.0",
+  "session": {
+    "new": True,
+    "sessionId": "amzn1.echo-api.session",
+    "application": {
+      "applicationId": "fake-application-id"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.account"
+    }
+  },
+  "context": {
+    "System": {
+      "application": {
+        "applicationId": "fake-application-id"
+      },
+      "user": {
+        "userId": "amzn1.account"
+      },
+      "device": {
+        "supportedInterfaces": {
+          "AudioPlayer": {}
+        }
+      }
+    },
+    "AudioPlayer": {
+      "offsetInMilliseconds": 0,
+      "playerActivity": "IDLE"
+    }
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "string",
+    "timestamp": "string",
+    "locale": "string",
+    "intent": {
+      "name": "PoemIntent",
+      "slots": {
+        }
+      }
+    }
+}
+
 give_advice_body = {
     "request": {
         "intent": {
@@ -263,7 +308,6 @@ give_advice_body = {
 
 general_survey_body = {
     "context": {
-
         "user": {
             "userId": "amzn1.ask.account"
         },
@@ -418,6 +462,7 @@ general_survey_body = {
     },
     "version": "1.0"
 }
+
 
 def generate_survey(name, dialog_completion, bonus_question, test_case):
 
