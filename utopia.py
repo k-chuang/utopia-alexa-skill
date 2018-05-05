@@ -40,10 +40,9 @@ from dotenv import load_dotenv
 ##################################
 # App & Environment Initialization
 ##################################
-from pathlib import Path  # python3 only
-env_path = Path('.') / '.env'
+
+env_path = os.path.join(os.path.dirname(os.path.realpath('.env')), '.env')
 load_dotenv(dotenv_path=env_path)
-# load_dotenv()
 app = Flask(__name__)
 ask = Ask(app, "/")
 logger = logging.getLogger('flask_ask').setLevel(logging.DEBUG)
