@@ -235,8 +235,8 @@ def give_quote(category):
 @ask.intent('PoemIntent')
 def give_poem():
     session.attributes['STATE'] = 'Poem'
-    # all_poems = os.environ["POEMS"]
-    all_poems = os.getenv('POEMS')
+    all_poems = os.environ["POEMS"]
+    # all_poems = os.getenv('POEMS')
     poems_json = json.loads(all_poems)
     the_poem_name = random.choice(list(poems_json['Poems'].keys()))
     the_poem = poems_json['Poems'][the_poem_name]
@@ -274,8 +274,8 @@ def recommend_therapist(address):
     except ValueError as er:
         return statement(str(er)).consent_card("read::alexa:device:all:address")
 
-    # api_key = os.environ['GOOGLE_API_KEY']
-    api_key = os.getenv('GOOGLE_API_KEY')
+    api_key = os.environ['GOOGLE_API_KEY']
+    # api_key = os.getenv('GOOGLE_API_KEY')
     kwargs_geocode = {'key': api_key}
     g = geocoder.google(address, **kwargs_geocode)
     coordinates = g.latlng
