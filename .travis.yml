@@ -1,21 +1,15 @@
 language: python
-
 python:
-  - '3.6'
-
+- '3.6'
 notifications:
   email: never
-
 before_install:
-  - openssl aes-256-cbc -K $encrypted_a0055995c7d5_key -iv $encrypted_a0055995c7d5_iv -in .env.enc -out .env -d
-
+- openssl aes-256-cbc -K $encrypted_a0055995c7d5_key -iv $encrypted_a0055995c7d5_iv
+  -in .env.enc -out .env -d
 install:
-  - pip install -r requirements-dev.txt
-
+- pip install -r requirements-dev.txt
 script:
-  - pytest tests/test_utopia_unit.py -v --cov utopia --cov-report term-missing
-
+- pytest tests/test_utopia_unit.py -v --cov utopia --cov-report term-missing
 after_success:
-  - coveralls
-  - codecov
-
+- coveralls
+- codecov
