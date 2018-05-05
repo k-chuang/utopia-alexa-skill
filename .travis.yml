@@ -10,12 +10,13 @@ language: python
 
 matrix:
     include:
-        - os: linux
-          python: 3.5
-        - os: linux
-          python: 3.6
+#        - os: linux
+#          python: 3.5
+#        - os: linux
+#          python: 3.6
         - os: osx
           language: generic
+          python: "3.6"
 
 notifications:
   email: never
@@ -23,9 +24,8 @@ notifications:
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade python; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install python3; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install openssl; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then virtualenv venv -p python3; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then virtualenv venv -p python; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then source venv/bin/activate; fi
   - openssl aes-256-cbc -K $encrypted_a0055995c7d5_key -iv $encrypted_a0055995c7d5_iv -in .env.enc -out .env -d
 
