@@ -1,1 +1,4 @@
 -r requirements.txt
+mock==2.0.0
+lex_bot_tester==1.0.6
+nose_parameterized==0.6.0
