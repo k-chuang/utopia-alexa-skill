@@ -22,7 +22,8 @@ notifications:
   email: never
 
 before_install:
- - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+  - |
+    if [ "$TRAVIS_OS_NAME" == "osx" ]; then
     brew update
     # Per the `pyenv homebrew recommendations <https://github.com/yyuu/pyenv/wiki#suggested-build-environment>`_.
     brew install openssl readline
