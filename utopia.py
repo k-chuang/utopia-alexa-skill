@@ -34,14 +34,13 @@ import yaml
 import random
 from random import randint
 from bs4 import BeautifulSoup, Tag, NavigableString
-from datetime import datetime
 from dotenv import load_dotenv
 
 ##################################
 # App & Environment Initialization
 ##################################
 
-env_path = os.path.join(os.path.dirname(os.path.realpath('.env')), '.env')
+env_path = os.path.realpath('.env')
 load_dotenv(dotenv_path=env_path)
 app = Flask(__name__)
 ask = Ask(app, "/")
