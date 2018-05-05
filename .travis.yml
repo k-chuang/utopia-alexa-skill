@@ -33,7 +33,7 @@ before_install:
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/Users/travis/.pyenv/shims:${PATH}"; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export pyenv-virtualenv venv; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then source venv/bin/activate; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then python3 virtualenv venv -p python3; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then python3 -m virtualenv venv -p python3; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then source venv/bin/activate; fi
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then python3 --version; fi
   - openssl aes-256-cbc -K $encrypted_a0055995c7d5_key -iv $encrypted_a0055995c7d5_iv -in .env.enc -out .env -d
