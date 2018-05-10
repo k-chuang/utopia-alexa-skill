@@ -28,10 +28,11 @@ and this is a product of our subjectivity and couple months of basic research on
   * Added three bonus questions that uses [NLTK](http://www.nltk.org/) sentiment analysis to contribute to the survey score.
 * Grab and read different types of quotes from [BrainyQuote](https://www.brainyquote.com/)
   * A few popular categories of quotes include positive, motivational, inspirational, family, love, and positive.
-* Give advice and ideas for activities
+* Give advice and ideas for activities to improve mood
   * Examples include:
-    * _Listen to music that makes you feel good._
-    * _Take note of all the small things you've accomplished today._
+    * *Listen to music that makes you feel good.*
+    * *Take note of all the small things you've accomplished today.*
+* Listen to a collection of uplifting & powerful poems
 * Recommend therapists nearby using [Google Places API](https://developers.google.com/places/) by providing contact information, current availability, and open hours
   * Will find nearby available therapists, and if there are no open therapists nearby, will default to all nearby therapist places (open or closed)
 * [National Suicide Prevention Lifeline](https://suicidepreventionlifeline.org/)
@@ -67,10 +68,10 @@ To start and hear the available features, you can say the following:
 To run tests and check code coverage, run the following command in the root project folder:
 
 ```bash
-  $ pytest tests/test_utopia_unit.py -v —cov utopia —cov-report term-missing
+$ pytest tests/test_utopia_unit.py -v —cov utopia —cov-report term-missing
 ```
 
-This command will execute the tests and check for test code coverage of the main program ([utopia.py](utopia.py)), and report which lines were not covered by the test suite ([test_utopia_unit.py](tests/test_utopia_unit.py)).
+The project uses pytest as the test runner. The command above will execute the tests and check for test code coverage of the main program ([utopia.py](utopia.py)), and report which lines were not covered by the test suite ([test_utopia_unit.py](tests/test_utopia_unit.py)).
 
 #### Travis CI
 This project uses [Travis-CI](https://travis-ci.org/), a hosted, distributed continuous integration service that builds and tests software hosted on GitHub. Every commit that is pushed to a GitHub repo automatically triggers [Travis CI](https://travis-ci.org/) to run, build and test your software.
@@ -79,7 +80,7 @@ The continuous integration configuration is specified in [.travis.yml](.travis.y
 
 [Travis CI](https://travis-ci.org/) generates a badge with the current build status (displayed above). Click on the badge for more information.
 
-#### CodeCov
+#### Codecov
 This project uses [Codecov](https://codecov.io/) to generate code coverage reports. [Codecov](https://codecov.io/) is a free, open source code coverage reporting tool that integrates seamlessly with GitHub. It calculates and measures code coverage and delivers the coverage metrics in a clear, understandable way. Similar to Travis CI, [Codecov](https://codecov.io/) also generates a clickable badge with the current code coverage metrics.
 
 ## To Be Continued...

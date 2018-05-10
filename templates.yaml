@@ -114,9 +114,12 @@ mild: |
 
 moderate: |
   Your score for the Hamilton Depression Survey is {{score}}. Based on this score, you fall in the category
-  of Moderate depression. My recommendation is to practice meditating, which
-  may help relax you and take your mind off of negative thoughts.
-  Please say meditation for an exercise for mindfulness meditation.
+  of Moderate depression. My recommendation is to listen to a motivation poem. This will help you relax and take your mind
+  off of negative thoughts. Please say poem to listen to a poem.
+
+#  My recommendation is to practice meditating, which
+#  may help relax you and take your mind off of negative thoughts.
+#  Please say meditation for an exercise for mindfulness meditation.
 
 severe: |
   Your score for the Hamilton Depression Survey is {{score}}. Based on this score, you fall in the category
@@ -132,5 +135,5 @@ very_severe: |
 reprompt_survey: |
   I'm sorry, but I did not quite understand the answer you gave. Please say a number in the specified range.
 
-bye: Farewell {{firstname}}! Thank you for using Utopia, and I wish you an awesome rest of your day.
+bye: Farewell {{firstname}}! Thank you for using Utopia, and I wish you an awesome rest of your day. Remember to be happy!
 
