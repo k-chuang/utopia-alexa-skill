@@ -51,18 +51,13 @@ To start using it, say a simple invocation phrase, such as the following listed 
 |------------------------------------------|--------------------------------------|
 | \<invocation name>                        | Alexa, Utopia                        |
 | Ask \<invocation name>                    | Alexa, Ask Utopia                    |
-| Begin \<invocation name>                  | Alexa, Begin Utopia                  |
-| Launch \<invocation name>                 | Alexa, Launch Utopia                |
-| Load \<invocation name>                   | Alexa, Load Utopia                   |
 | Open \<invocation name>                   | Alexa, Open Utopia                   |
-| Run \<invocation name>                    | Alexa, Run Utopia                    |
 | Start \<invocation name>                  | Alexa, Start Utopia                  |
-| Use \<invocation name>                    | Alexa, Use Utopia                    |
 
 
 To start and hear the available features, you can say the following:
 
-    Alexa, open Utopia and ask for available features
+    Alexa, ask Utopia for available features
 
 ## Testing & Code Coverage
 To run tests and check code coverage, run the following command in the root project folder:
