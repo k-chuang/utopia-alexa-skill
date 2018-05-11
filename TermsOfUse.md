@@ -1,5 +1,5 @@
 
-#Terms of Use
+# Terms of Use
 
 This Terms of Use has been compiled to help the users. Please read our Terms of use carefully to get a clear understanding of how we collect, use, protect or otherwise handle your Personally Identifiable Information in accordance with our App/Alexa Skill.
 
