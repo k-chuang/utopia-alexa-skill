@@ -78,7 +78,7 @@ quote: |
 BonusOneWait: |
   <speak>
   Okay. I will repeat the question and give you time to think.
-  Think about the first three words that come to your mind.
+  Think about the first couple of words that come to your mind.
   <break time="7s"/>
   Are you ready to move on?
 
@@ -87,7 +87,7 @@ BonusOneWait: |
 BonusTwoWait: |
   <speak>
   Okay. I will repeat the question and give you time to think.
-  Think about three adjectives that describe your past week. Again, you will have time to think about it, before answering.
+  Think about some adjectives that describe your past week. Again, you will have time to think about it, before answering.
   <break time="7s"/>a
   Are you ready to move on?
   </speak>
@@ -95,7 +95,7 @@ BonusTwoWait: |
 BonusThreeWait: |
   <speak>
   Okay. I will repeat this question and give you time to think.
-  Think about three adjectives you would use to describe yourself.
+  Think about some adjectives you would use to describe yourself.
   <break time="7s"/>
   Are you ready to move on?
 
