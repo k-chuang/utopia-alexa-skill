@@ -189,7 +189,11 @@ def start_survey():
         score_message = render_template('very_severe', score=score)
         session.attributes['Severity'] = 'very severe'
 
-    return question(score_message)
+
+    return question(score_message).simple_card(title='Your Hamilton Depression Rating Survey Score',
+                                               content=render_template('HAMD_display_card',
+                                                                       score=score,
+                                                                       level=session.attributes['Severity']))
 
 
 @ask.intent("GetQuoteTypeIntent")
@@ -358,13 +362,14 @@ def give_advice():
     with open("templates.yaml", 'r') as stream:
         out = yaml.load(stream)
         all_advice = out['advice_list']
-    advice = random.choice(all_advice) + '<break time="1s"/> '
-    advice_message = render_template('advice_message') + advice + 'I hope that was able to help you. If you wish to ' \
-                                                                  'hear more ideas about what you can do to improve ' \
-                                                                  'your mood, say more ideas. For other features, ' \
+    advice = random.choice(all_advice)
+    advice_message = render_template('advice_message') + advice + ' <break time="1s"/> I hope that was able to help you. ' \
+                                                                  'If you wish to hear more ideas about what you can do ' \
+                                                                  'to improve your mood, say more ideas. For other features, ' \
                                                                   'say help. Otherwise, say stop to stop. '
     advice_message_ssml = '<speak> ' + advice_message + ' </speak>'
-    return question(advice_message_ssml)
+    return question(advice_message_ssml).simple_card(title='Ideas to improve your mood!',
+                                                     content=advice)
 
 
 ##############################

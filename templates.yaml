@@ -132,6 +132,10 @@ very_severe: |
   National Suicide Prevention Lifeline. Do you want to talk to a therapist, or the suicide hotline?
   Say therapist or suicide hotline for help.
 
+HAMD_display_card: |
+  Your score for the Hamilton Depression Survey is {{score}}. Based on this score, you fall in the category of
+  {{level}} depression.
+
 reprompt_survey: |
   I'm sorry, but I did not quite understand the answer you gave. Please say a number in the specified range.
 
