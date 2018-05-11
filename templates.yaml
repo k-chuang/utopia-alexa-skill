@@ -104,18 +104,18 @@ BonusThreeWait: |
 normal: |
   Your score for the Hamilton Depression Survey is {{score}}. Based on this score, you fall in the category
   of Normal. You may be experiencing temporary depression due to a recent event. Keep your head up! My recommendation is to
-  listen to some uplifting quotes. Say quotes to listen to some inspirational quotes or help for other available features.
+  listen to some uplifting quotes. Say quotes to listen to some quotes or help for other available features.
 
 mild: |
   Your score for the Hamilton Depression Survey is {{score}}. Based on this score, you fall in the category
-  of Mild depression. My recommendation is to check out some natural remedies for depression. To listen to some, please say
-  remedy. If you want to check out the other features, say help. Otherwise say stop to stop.
+  of Mild depression. My recommendation is to check out some natural remedies for depression. To listen to some natural remedies,
+  please say remedy. If you want to check out the other features, say help. Otherwise say stop to stop.
 
 
 moderate: |
   Your score for the Hamilton Depression Survey is {{score}}. Based on this score, you fall in the category
   of Moderate depression. My recommendation is to listen to a motivation poem. This will help you relax and take your mind
-  off of negative thoughts. Please say poem to listen to a poem.
+  off of negative thoughts. Please say poem to listen to a poem. If you want to check out the other features, say help. Otherwise say stop to stop.
 
 #  My recommendation is to practice meditating, which
 #  may help relax you and take your mind off of negative thoughts.
@@ -135,5 +135,5 @@ very_severe: |
 reprompt_survey: |
   I'm sorry, but I did not quite understand the answer you gave. Please say a number in the specified range.
 
-bye: Farewell {{firstname}}! Thank you for using Utopia, and I wish you an awesome rest of your day. Remember to be happy!
+bye: Farewell {{firstname}}! Thank you for using Utopia, and I wish you an awesome rest of your day.
 

@@ -26,9 +26,9 @@ and this is a product of our subjectivity and couple months of basic research on
 
 * [Hamilton Depression Rating Scale Survey](https://www.psychcongress.com/saundras-corner/scales-screeners/depression/hamilton-depression-rating-scale-ham-d) consisting of 16 questions to analyze and evaluate level of depression.
   * Added three bonus questions that uses [NLTK](http://www.nltk.org/) sentiment analysis to contribute to the survey score.
-* Grab and read different types of quotes from [BrainyQuote](https://www.brainyquote.com/)
+* Listen to different categories of quotes from [BrainyQuote](https://www.brainyquote.com/)
   * A few popular categories of quotes include positive, motivational, inspirational, family, love, and positive.
-* Give advice and ideas for activities to improve mood
+* Listen to advice and ideas for activities to improve mood
   * Examples include:
     * *Listen to music that makes you feel good.*
     * *Take note of all the small things you've accomplished today.*
