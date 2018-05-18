@@ -45,19 +45,21 @@ Utopia is powered by Python, [Flask-Ask](http://flask-ask.readthedocs.io/en/late
 a micro web framework), and the [Alexa Skills kit](https://developer.amazon.com/alexa-skills-kit).
 
 ## Usage
+Different from the skill name, the invocation name is 'happy place'.
+
 To start using it, say a simple invocation phrase, such as the following listed below:
 
 | Starting Phrase                          | Example                              |
 |------------------------------------------|--------------------------------------|
-| \<invocation name>                        | Alexa, Utopia                        |
-| Ask \<invocation name>                    | Alexa, Ask Utopia                    |
-| Open \<invocation name>                   | Alexa, Open Utopia                   |
-| Start \<invocation name>                  | Alexa, Start Utopia                  |
+| \<invocation name>                        | Alexa, happy place                        |
+| Launch \<invocation name>                 | Alexa, Launch happy place                  |
+| Open \<invocation name>                   | Alexa, Open happy place                  |
+| Start \<invocation name>                  | Alexa, Start happy place                  |
 
 
 To start and hear the available features, you can say the following:
 
-    Alexa, ask Utopia for available features
+    Alexa, ask happy place for available features
 
 ## Testing & Code Coverage
 To run tests and check code coverage, run the following command in the root project folder:
@@ -78,5 +80,3 @@ The continuous integration configuration is specified in [.travis.yml](.travis.y
 #### Codecov
 This project uses [Codecov](https://codecov.io/) to generate code coverage reports. [Codecov](https://codecov.io/) is a free, open source code coverage reporting tool that integrates seamlessly with GitHub. It calculates and measures code coverage and delivers the coverage metrics in a clear, understandable way. Similar to Travis CI, [Codecov](https://codecov.io/) also generates a clickable badge with the current code coverage metrics.
 
-## To Be Continued...
-I will add more to this as I get farther into the project.
