@@ -80,12 +80,12 @@ class TestUtopiaApp(unittest.TestCase):
             self.assertEqual(severity, data['sessionAttributes']['Severity'])
             self.assertTrue(lower_limit <= data['sessionAttributes']['HAMD_SCORE'] <= upper_limit)
 
-    def test_name_intent(self):
-        """Test NameIntent"""
-        response = self.app.post('/', data=json.dumps(request_json.name_intent_body))
-        self.assertEqual(200, response.status_code)
-        data = json.loads(response.data.decode('utf-8'))
-        self.assertEqual('Kevin', data['sessionAttributes']['firstname'])
+    # def test_name_intent(self):
+    #     """Test NameIntent"""
+    #     response = self.app.post('/', data=json.dumps(request_json.name_intent_body))
+    #     self.assertEqual(200, response.status_code)
+    #     data = json.loads(response.data.decode('utf-8'))
+    #     self.assertEqual('Kevin', data['sessionAttributes']['firstname'])
 
     def test_get_brainy_quotes(self):
         """Testing helper function get_brainy_quotes"""

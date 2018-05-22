@@ -1,16 +1,16 @@
 
 initial_welcome: |
-  Welcome to Utopia! I'm Alexa, and I will be helping you out today.
-  For the full list of features and commands, please say help. Other than that, what's your name?
+  Welcome to Utopia! I'm Alexa, and I will be helping you out today. Before we start, I just wanted to mention that this skill is not a substitute for professional medical advice.
+  Would you like to take the Hamilton Depression Rating survey, or do you want a full list of the features? Say survey or help to continue.
 
-initial_welcome_reprompt: Sorry, I did not quite get that, what's your name?
+initial_welcome_reprompt: Hello again, I did not catch that. Please say survey or help to continue.
 
-official_welcome: |
-  Hi {{firstname}}! Would you like to take the Hamilton Depression Rating survey,
-  or do you want a full list of the features? Say survey or help to continue.
-
-official_welcome_reprompt: |
-  Hello again, I did not catch that. Please say survey or help to continue.
+#official_welcome: |
+#  Hi {{firstname}}! Would you like to take the Hamilton Depression Rating survey,
+#  or do you want a full list of the features? Say survey or help to continue.
+#
+#official_welcome_reprompt: |
+#  Hello again, I did not catch that. Please say survey or help to continue.
 
 suicide: |
   Thank you for being honest with me. Please don't hurt yourself or anyone else. Be strong, and remember that there are people that love and care about you.
@@ -62,7 +62,7 @@ poem: |
 
 help: |
   For an evaluation, say survey. To listen to a uplifting quote, say quotes. For a list of natural remedies for depression, please say remedy.
-  For mindfulness meditation, say meditation. For nearby therapist recommendations, say therapist.
+  To listen to a collection of uplifting poems, say poems. For nearby therapist recommendations, say therapist.
   For contact information of the National Suicide Prevention Lifeline, please say lifeline.
 
 
@@ -138,5 +138,5 @@ HAMD_display_card: |
 reprompt_survey: |
   I'm sorry, but I did not quite understand the answer you gave. Please say a number in the specified range.
 
-bye: Farewell {{firstname}}! Thank you for using Utopia, and I wish you an awesome rest of your day.
+bye: Farewell my friend! Thank you for using Utopia, and I wish you an awesome rest of your day.
 

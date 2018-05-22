@@ -61,16 +61,16 @@ def start_skill():
 ##########################
 # Custom Intents
 ##########################
-@ask.intent("NameIntent", mapping= {'firstname': 'FirstName'})
-def get_name(firstname):
-    name_message = render_template("official_welcome", firstname=firstname)
-    name_message_reprompt = render_template("official_welcome_reprompt")
-    session.attributes["firstname"] = firstname
-    session.attributes_encoder = json.JSONEncoder
-    # DEBUG
-    # with open('session.json', 'w') as outfile:
-    #     json.dump(session.attributes, outfile, indent=4, sort_keys=True)
-    return question(name_message).reprompt(name_message_reprompt)
+# @ask.intent("NameIntent", mapping= {'firstname': 'FirstName'})
+# def get_name(firstname):
+#     name_message = render_template("official_welcome", firstname=firstname)
+#     name_message_reprompt = render_template("official_welcome_reprompt")
+#     session.attributes["firstname"] = firstname
+#     session.attributes_encoder = json.JSONEncoder
+#     # DEBUG
+#     # with open('session.json', 'w') as outfile:
+#     #     json.dump(session.attributes, outfile, indent=4, sort_keys=True)
+#     return question(name_message).reprompt(name_message_reprompt)
 
 
 @ask.intent("SurveyIntent")
@@ -246,7 +246,6 @@ def give_poem():
     the_poem_name = random.choice(list(poems_json['Poems'].keys()))
     the_poem = poems_json['Poems'][the_poem_name]
     poem_author = the_poem['author']
-    # speech = 'Here is a poem for you... ' + str(the_poem_name) + ', by ' + str(poem_author)
     speech = render_template('poem', the_poem_name=the_poem_name, poem_author=poem_author)
     stream_url = the_poem['audio_link']
     return audio(speech).play(stream_url).simple_card(title=the_poem_name + ' by ' + poem_author,
@@ -375,6 +374,18 @@ def give_advice():
 ##############################
 # Overriding Required Intents
 ##############################
+@ask.intent('AMAZON.CancelIntent')
+@ask.intent('AMAZON.StopIntent')
+def stop():
+    # try:
+    #     firstname = session.attributes['firstname']
+    # except KeyError:
+    #     firstname = 'my friend'
+    # bye_message = render_template("bye", firstname=firstname)
+    bye_message = render_template("bye")
+    return audio(bye_message).clear_queue(stop=True)
+
+
 @ask.intent('AMAZON.PauseIntent')
 def pause():
     return audio('Pausing..').stop()
@@ -385,22 +396,22 @@ def resume():
     return audio('Resuming..').resume()
 
 
+@ask.intent('AMAZON.NextIntent')
+@ask.intent('AMAZON.PreviousIntent')
+@ask.intent('AMAZON.ShuffleOffIntent')
+@ask.intent('AMAZON.ShuffleOnIntent')
+@ask.intent('AMAZON.RepeatIntent')
+@ask.intent('AMAZON.LoopOffIntent')
+@ask.intent('AMAZON.LoopOnIntent')
+@ask.intent('AMAZON.StartOverIntent')
+def not_supported():
+    return audio('Sorry, that feature is not yet implemented... Resuming...').resume()
+
+
 @ask.intent('AMAZON.HelpIntent')
 def help():
     help_text = render_template('help')
     return question(help_text)
-
-
-@ask.intent('AMAZON.CancelIntent')
-@ask.intent('AMAZON.StopIntent')
-def stop():
-    try:
-        firstname = session.attributes['firstname']
-    except KeyError:
-        firstname = 'my friend'
-    bye_message = render_template("bye", firstname=firstname)
-    return audio(bye_message).clear_queue(stop=True)
-    #return statement(bye_message)
 
 
 @ask.session_ended
@@ -442,7 +453,13 @@ def get_location():
     '''
     URL = "https://api.amazonalexa.com/v1/devices/{}/settings" \
           "/address".format(context.System.device.deviceId)
-    TOKEN = context.System.user.permissions.consentToken
+
+    try:
+        TOKEN = context.System.user.permissions.consentToken
+    except AttributeError:
+        raise ValueError('Sorry, but your location could not be found. Please enable it by allowing access to '
+                         'your location via the Alexa app, and try again to fully utilize this feature. Thank you.')
+
     HEADER = {'Accept': 'application/json',
               'Authorization': 'Bearer {}'.format(TOKEN)}
     r = requests.get(URL, headers=HEADER)
