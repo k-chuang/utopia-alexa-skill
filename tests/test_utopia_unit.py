@@ -6,6 +6,7 @@ import os
 import tests.request_json as request_json
 from nose_parameterized import parameterized
 from mock import patch
+import pytest
 
 
 class TestUtopiaApp(unittest.TestCase):
@@ -133,6 +134,7 @@ class TestUtopiaApp(unittest.TestCase):
         self.assertTrue('I\'ve found a therapist near you.' in data['response']['outputSpeech']['text'])
         self.assertEqual('RecommendTherapist', data['sessionAttributes']['STATE'])
 
+    @pytest.mark.skip(reason="Inconsistent results based on map location and time")
     @patch('utopia.get_location', return_value='158 Bradford St, Sonora, CA 95370')
     def test_recommend_therapist_intent_address_mocked_closed_places(self, mock_get_location):
         response = self.app.post('/', data=json.dumps(request_json.recommend_therapist_body))
