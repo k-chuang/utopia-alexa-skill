@@ -12,6 +12,41 @@ initial_welcome_reprompt: Hello again, I did not catch that. Please say survey o
 #official_welcome_reprompt: |
 #  Hello again, I did not catch that. Please say survey or help to continue.
 
+repeat_survey_question: Please say repeat survey question to hear the question again.
+
+One: On a scale of zero to four, how would you describe your mood this past week, with zero being normal, and four being extremely depressed?
+
+Two: On a scale of zero to four, how would you rate your feelings of guilt, with zero being absent of any feelings of guilt and four being hallucinations of guilt?
+
+Three: On a scale of zero to four, how would you describe your thoughts toward suicide, with zero being absent, and four being attempts at suicide?
+
+Four: The following three questions will be about insomnia. On a scale of zero to two, how often do you experience insomnia, specifically difficulty falling asleep, with zero being absent, and two being frequently having trouble falling asleep?
+
+Five: On a scale of zero to two, how frequently do you wake up during the night, and are restless and disturbed during the night, with zero being absent, and two being frequently?
+
+Six: On a scale of zero to two, how often do you wake up early in the morning, and are unable to fall asleep again, with zero being absent, and two being frequently?
+
+Seven: This question will be about your work and interests. Using a scale from zero to four, describe your productivity in work or school, and the level of interest in your hobbies, with zero being normal, and four being unable to work and uninterested in anything?
+
+Eight: Using a scale from zero to four, have you felt slowed down in your thinking, speaking, or movement in the past week, with zero being absent, and four being having extreme difficulty thinking, speaking, and moving?
+
+Nine: On a scale of zero to two, have you frequently felt restless or fidgety in the past week, with zero being absent, and two being frequently?
+
+Ten: On a scale of zero to four, have you been feeling extremely anxious, nervous, or on edge in the past week, with zero being no, not at all, and four being yes, all the time?
+
+Eleven: On a scale of zero to four, how has your anxiety affected your body, such as having headaches, blurred vision, chest pain, and indigestion, with zero being absent, and four being incapacitating?
+
+Twelve: The next two questions will be about somatic symptoms. On a scale of zero to two, have you experienced loss of appetite, heavy feeling in abdomen, or constipation, and if so, how severe was it, with zero being absent, and two being severe?
+
+Thirteen: On a scale of zero to two, have you experienced any energy loss, heaviness in limbs, back or head, and diffuse backache, and how severe was it, with zero being absent, and two being severe?
+
+Fourteen: I am going to ask a personal question, but rest assured, that I will not share any information from this survey. On a scale of zero to two, how would you categorize your sexual drive, and menstrual disturbances, if any, with zero being absent, and two being severe?
+
+Fifteen: On a scale of zero to four, how much have your thoughts been focused on your physical health, with zero being absent, and four being inordinately worried about having a serious illness?
+
+Sixteen: On a scale of zero to two, how much has your weight changed in the past two weeks, with zero being no weight loss, and two being severe weight loss?
+
+
 suicide: |
   Thank you for being honest with me. Please don't hurt yourself or anyone else. Be strong, and remember that there are people that love and care about you.
   I encourage you to reach out for help and call the National Suicide Prevention Hotline at 1-800-273-8255. They are available to talk to you 24 hours a day, 7 days a week.

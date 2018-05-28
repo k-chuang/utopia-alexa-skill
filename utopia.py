@@ -61,23 +61,21 @@ def start_skill():
 ##########################
 # Custom Intents
 ##########################
-# @ask.intent("NameIntent", mapping= {'firstname': 'FirstName'})
-# def get_name(firstname):
-#     name_message = render_template("official_welcome", firstname=firstname)
-#     name_message_reprompt = render_template("official_welcome_reprompt")
-#     session.attributes["firstname"] = firstname
-#     session.attributes_encoder = json.JSONEncoder
-#     # DEBUG
-#     # with open('session.json', 'w') as outfile:
-#     #     json.dump(session.attributes, outfile, indent=4, sort_keys=True)
-#     return question(name_message).reprompt(name_message_reprompt)
-
-
 @ask.intent("SurveyIntent")
 def start_survey():
 
-    dialog_state = get_dialog_state()
+    if 'dialogState' not in session.attributes:
+        dialog_state = get_dialog_state()
+    else:
+        dialog_state = session.attributes['dialogState']
+
+    # dialog_state = get_dialog_state()
     session.attributes_encoder = json.JSONEncoder
+
+    all_slots = list(request['intent']['slots'].keys())
+    sesh_slots = list(session.attributes.keys())
+
+    updatedIntent = generate_updated_intent(all_slots, sesh_slots)
 
     if dialog_state == "STARTED":
         session.attributes["COUNT"] = 0
@@ -86,20 +84,35 @@ def start_survey():
         session.attributes["QUESTION"] = 'One'
         session.attributes["PREV_QUESTION"] = 'BonusOne'
         session.attributes["STATE"] = 'Survey'
-        return delegate()
+        session.attributes['dialogState'] = 'IN_PROGRESS'
+        return delegate(updated_intent=updatedIntent['updatedIntent'])
     elif dialog_state == "IN_PROGRESS":
+
         # If do not want to continue survey:
-        if request["intent"]["slots"]["StartSurvey"]["value"] == 'no':
+        # if request["intent"]["slots"]["StartSurvey"]["value"] == 'no':
+        if updatedIntent['updatedIntent']["slots"]["StartSurvey"]["value"] == 'no':
             return stop()
+        else:
+            session.attributes['StartSurvey'] = 'yes'
+
+        if 'REPEAT' in session.attributes:
+            if session.attributes['REPEAT']:
+                re_question = session.attributes['QUESTION']
+                reprompt_survey = 'I will repeat the question. ' + render_template(re_question)
+                session.attributes['REPEAT'] = False
+                session['dialogState'] = 'IN_PROGRESS'
+                return elicit_slot(re_question, reprompt_survey)
 
         survey_question = session.attributes["QUESTION"]
         # For bonus question
         previous_question = session.attributes["PREV_QUESTION"]
+
         # If regular survey questions
         if not re.match("Bonus", survey_question):
             if 'value' in request["intent"]["slots"][survey_question]:
 
                 if str(request["intent"]["slots"][survey_question]["value"]) not in ('0', '1', '2', '3', '4'):
+                # if str(request["intent"]["slots"][survey_question]["value"]) == '?':
                     reprompt_answer = render_template("reprompt_survey")
                     return elicit_slot(survey_question, reprompt_answer)
 
@@ -139,8 +152,9 @@ def start_survey():
         session.attributes["QUESTION"] = survey_question
         session.attributes["PREV_QUESTION"] = previous_question
 
-        return delegate()
+        return delegate(updated_intent=updatedIntent['updatedIntent'])
     elif dialog_state == "COMPLETED":
+        session.attributes['dialogState'] = 'COMPLETED'
         # Get last bonus question answer
         last_question = session.attributes.get("QUESTION")
         session.attributes[last_question] = \
@@ -188,7 +202,6 @@ def start_survey():
         # Very Severe Depression
         score_message = render_template('very_severe', score=score)
         session.attributes['Severity'] = 'very severe'
-
 
     return question(score_message).simple_card(title='Your Hamilton Depression Rating Survey Score',
                                                content=render_template('HAMD_display_card',
@@ -400,12 +413,24 @@ def resume():
 @ask.intent('AMAZON.PreviousIntent')
 @ask.intent('AMAZON.ShuffleOffIntent')
 @ask.intent('AMAZON.ShuffleOnIntent')
-@ask.intent('AMAZON.RepeatIntent')
 @ask.intent('AMAZON.LoopOffIntent')
 @ask.intent('AMAZON.LoopOnIntent')
 @ask.intent('AMAZON.StartOverIntent')
 def not_supported():
     return audio('Sorry, that feature is not yet implemented... Resuming...').resume()
+
+
+@ask.intent('AMAZON.RepeatIntent')
+def repeat():
+    if session.attributes["STATE"] == 'Survey':
+        # question = session.attributes['QUESTION']
+        session.attributes['REPEAT'] = True
+        prompt = render_template('repeat_survey_question')
+        return question(prompt)
+        # reprompt_survey = 'I will repeat the question.  ' + render_template(question)
+        # return elicit_slot(question, reprompt_survey)
+    elif session.attributes["STATE"] == 'Poem':
+        return audio('Sorry, that feature is not yet implemented... Resuming...').resume()
 
 
 @ask.intent('AMAZON.HelpIntent')
@@ -478,12 +503,45 @@ def get_dialog_state():
     return session['dialogState']
 
 
+def generate_updated_intent(all_slots, sesh_slots):
+
+    fill_in_slots = list(set(all_slots) & set(sesh_slots))
+
+    req_slots = request['intent']['slots']
+
+    for slot_name in req_slots:
+        if 'value' in req_slots[slot_name]:
+            fill_in_slots.append(slot_name)
+
+    updatedIntent = {"updatedIntent": {"name": "SurveyIntent", "confirmationStatus": "NONE", "slots": {}}}
+
+    for slot in fill_in_slots:
+        updated_slot = {}
+        updated_slot[slot] = {}
+        updated_slot[slot]['name'] = slot
+        if 'value' in request["intent"]["slots"][slot]:
+            updated_slot[slot]['value'] = request["intent"]["slots"][slot]["value"]
+            session.attributes[slot] = request["intent"]["slots"][slot]["value"]
+        else:
+            updated_slot[slot]['value'] = session.attributes[slot]
+
+        updated_slot[slot]['confirmationStatus'] = 'NONE'
+        updatedIntent['updatedIntent']['slots'].update(updated_slot)
+
+    for other_slots in list(set(all_slots) - set(fill_in_slots)):
+        updated_slot = {}
+        updated_slot[other_slots] = {}
+        updated_slot[other_slots]['name'] = other_slots
+        updated_slot[other_slots]['confirmationStatus'] = 'NONE'
+        updatedIntent['updatedIntent']['slots'].update(updated_slot)
+
+    return updatedIntent
+
+
 ##############################
 # Program Entry
 ##############################
-
 if __name__ == '__main__':
-
     app.config['ASK_PRETTY_DEBUG_LOGS'] = True
 
     app.run(debug=True)
