@@ -4,6 +4,7 @@
 
 Utopia is the name of the Alexa skill that is designed to help people with depression.
 
+The skill has passed certification, and is now live and available at the Alexa Skills Store located here: [Utopia Alexa Skill](https://www.amazon.com/Kevin-Chuang-Utopia/dp/B07CZWS8B2/ref=sr_1_1?s=digital-skills&ie=UTF8&qid=1527870855&sr=1-1&keywords=utopia&dpID=41eETH9Rc5L&preST=_SY300_QL70_&dpSrc=srch)
 ## Architecture
 ![alt text](images/Utopia-alexa-skill-architecture.png)
 
