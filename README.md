@@ -1,5 +1,5 @@
 # Utopia: An Alexa skill that helps with depression
-[![Build Status](https://travis-ci.org/k-chuang/utopia-alexa-skill.svg?branch=master)](https://travis-ci.org/k-chuang/utopia-alexa-skill) [![codecov](https://codecov.io/gh/k-chuang/utopia-alexa-skill/branch/master/graph/badge.svg)](https://codecov.io/gh/k-chuang/utopia-alexa-skill)
+[![Build Status](https://travis-ci.org/k-chuang/utopia-alexa-skill.svg?branch=master)](https://travis-ci.org/k-chuang/utopia-alexa-skill) [![codecov](https://codecov.io/gh/k-chuang/utopia-alexa-skill/branch/master/graph/badge.svg)](https://codecov.io/gh/k-chuang/utopia-alexa-skill) [![HitCount](http://hits.dwyl.io/k-chuang/utopia-alexa-skill.svg)](http://hits.dwyl.io/k-chuang/utopia-alexa-skill)
 
 
 Utopia is the name of the Alexa skill that is designed to help people with depression.
