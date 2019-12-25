@@ -3,7 +3,7 @@ textblob==0.15.1
 requests==2.18.4
 Flask==0.12.2
 Flask_Ask==0.9.8
-beautifulsoup4==4.6.0
+beautifulsoup4==4.8.2
 python-dotenv==0.8.2
 geocoder==1.38.1
 lex_bot_tester==1.0.6
