@@ -1,4 +1,4 @@
-mock==2.0.0
+mock==4.0.0
 textblob==0.15.1
 requests==2.18.4
 Flask==0.12.2
